@@ -2,9 +2,11 @@ package org.andy.springdata;
 
 import org.andy.springdata.config.JPAConfig;
 import org.andy.springdata.config.MongoConfig;
+import org.andy.springdata.config.Neo4JConfig;
 import org.andy.springdata.domain.Account;
 import org.andy.springdata.repositories.AccountCrudRepository;
 import org.andy.springdata.repositories.jpa.AccountJPARepository;
+import org.andy.springdata.repositories.jpa.neo4j.AccountNeo4JRepository;
 import org.andy.springdata.repositories.mongo.AccountMongoRepository;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -18,6 +20,7 @@ public class App {
     public static void main(String[] args) {
         validateRepository(JPAConfig.class, AccountJPARepository.class);
         validateRepository(MongoConfig.class, AccountMongoRepository.class);
+        // validateRepository(Neo4JConfig.class, AccountNeo4JRepository.class);
     }
 
     private static void validateRepository(final Class appContextClass, Class<? extends AccountCrudRepository> clazz) throws IllegalStateException, BeansException {
