@@ -2,9 +2,12 @@ package org.andy.springdata;
 
 import org.andy.springdata.config.AppConfig;
 import org.andy.springdata.domain.Account;
-import org.andy.springdata.domain.AccountRepository;
+import org.andy.springdata.repositories.AccountCrudRepository;
+import org.andy.springdata.repositories.jpa.AccountJPARepository;
+import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  *
@@ -13,7 +16,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class App {
     public static void main(String[] args) {
         final ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-        final AccountRepository repository = context.getBean(AccountRepository.class);
+        validateRepository(context, AccountJPARepository.class);
+    }
+
+    private static void validateRepository(final ApplicationContext context, Class<? extends AccountCrudRepository> clazz) throws IllegalStateException, BeansException {
+        final AccountCrudRepository repository = context.getBean(clazz);
         for(int i = 0; i < 100; i++) {
             final Account account = new Account();
             account.setId((long) i);
