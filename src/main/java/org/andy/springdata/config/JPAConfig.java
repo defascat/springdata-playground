@@ -3,6 +3,7 @@ package org.andy.springdata.config;
 import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import org.andy.springdata.repositories.jpa.AccountJPARepository;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,11 +26,10 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
  * @author andy
  */
 @Configuration
-@EnableJpaRepositories(basePackages = "org.andy.springdata.repositories.jpa")
+@EnableJpaRepositories(basePackageClasses = AccountJPARepository.class)
+// @EnableMongoRepositories(basePackageClasses = AccountMongoRepository.class)
 @PropertySource("classpath:/db.properties")
-public class AppConfig {
-
-    private String driver;
+public class JPAConfig {
 
     @Autowired
     private ApplicationContext context;

@@ -4,12 +4,14 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
  * @author andy
  */
 @Entity
+@Document
 public class Account implements Serializable {
     @Id
     private Long id;
